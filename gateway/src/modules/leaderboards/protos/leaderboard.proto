@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package leaderboards;
+
+service LeaderboardService {
+  rpc GetLeaderboard (LeaderboardRequest) returns (LeaderboardResponse);
+  rpc UpdateScore (ScoreUpdateRequest) returns (ScoreUpdateResponse);
+}
+
+message LeaderboardRequest {}
+
+message LeaderboardResponse {
+  repeated LeaderboardEntry entries = 1;
+}
+
+message LeaderboardEntry {
+  string userId = 1;
+  int32 score = 2;
+}
+
+message ScoreUpdateRequest {
+  int32 score = 2;
+}
+
+message ScoreUpdateResponse {
+  bool success = 1;
+}
